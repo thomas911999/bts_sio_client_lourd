@@ -3,23 +3,30 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
-<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="525.0" prefWidth="721.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.efrei.controller.FXMLTrainController">
-   <children>
-      <AnchorPane layoutX="-2.0" layoutY="-1.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="532.0" prefWidth="258.0" style="-fx-background-color: grey;">
-         <children>
-            <Button layoutX="22.0" layoutY="336.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="214.0" style="-fx-background-color: green;" text="AJOUTER" textAlignment="CENTER" textFill="#df6464" />
-            <Button layoutX="22.0" layoutY="382.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="214.0" style="-fx-background-color: orange;" text="MODIFER" />
-            <Button layoutX="22.0" layoutY="427.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="214.0" style="-fx-background-color: red;" text="SUPPRIMER" />
-         </children>
-      </AnchorPane>
-      <TableView fx:id="table_train" layoutX="256.0" layoutY="-2.0" prefHeight="532.0" prefWidth="466.0" style="-fx-background-color: #fff;">
-         <columns>
-            <TableColumn fx:id="col_id" style="-fx-alignment: CENTER;" text="ID_TRAIN" />
-            <TableColumn fx:id="col_modele" prefWidth="251.0" style="-fx-alignment: CENTER;" text="MODELE" />
-            <TableColumn fx:id="col_capacite" prefWidth="142.40008544921875" style="-fx-alignment: CENTER;" text="CAPACITE" />
-         </columns>
-      </TableView>
-   </children>
-</AnchorPane>
+<BorderPane prefHeight="535.0" prefWidth="743.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.efrei.controller.FXMLTrainController">
+    <center>
+        <TableView fx:id="table_train" prefHeight="434.0" prefWidth="386.0" style="-fx-background-color: #fff;">
+            <columns>
+                <TableColumn fx:id="col_id" prefWidth="136.79992067813873" style="-fx-alignment: CENTER;" text="ID_TRAIN" />
+                <TableColumn fx:id="col_modele" prefWidth="215.20001220703125" style="-fx-alignment: CENTER;" text="MODELE" />
+                <TableColumn fx:id="col_capacite" prefWidth="209.60000610351562" style="-fx-alignment: CENTER;" text="CAPACITE" />
+            </columns>
+        </TableView>
+    </center>
+   <left>
+        <VBox prefHeight="535.0" prefWidth="181.0" style="-fx-background-color: grey;" BorderPane.alignment="CENTER">
+            <children>
+                <Button mnemonicParsing="false" prefHeight="71.0" prefWidth="203.0" style="-fx-background-color: orange;" text="MODIFER" />
+                <Button mnemonicParsing="false" prefHeight="56.0" prefWidth="203.0" style="-fx-background-color: red;" text="SUPPRIMER" />
+                <Button mnemonicParsing="false" prefHeight="64.0" prefWidth="203.0" style="-fx-background-color: green;" text="AJOUTER" textAlignment="CENTER" textFill="#df6464" />
+            </children>
+        </VBox>
+   </left>
+   <top>
+      <ToolBar prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+   </top>
+</BorderPane>
