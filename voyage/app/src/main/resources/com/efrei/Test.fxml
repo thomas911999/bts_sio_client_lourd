@@ -16,9 +16,9 @@
       </AnchorPane>
       <TableView fx:id="table_train" layoutX="256.0" layoutY="-2.0" prefHeight="532.0" prefWidth="466.0" style="-fx-background-color: #fff;">
          <columns>
-            <TableColumn fx:id="col_id" text="ID_TRAIN" />
-            <TableColumn fx:id="col_modele" prefWidth="251.0" text="MODELE" />
-            <TableColumn fx:id="col_capacite" prefWidth="142.40008544921875" text="CAPACITE" />
+            <TableColumn fx:id="col_id" style="-fx-alignment: CENTER;" text="ID_TRAIN" />
+            <TableColumn fx:id="col_modele" prefWidth="251.0" style="-fx-alignment: CENTER;" text="MODELE" />
+            <TableColumn fx:id="col_capacite" prefWidth="142.40008544921875" style="-fx-alignment: CENTER;" text="CAPACITE" />
          </columns>
       </TableView>
    </children>
