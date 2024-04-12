@@ -5,23 +5,21 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="525.0" prefWidth="721.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.efrei.controller.FXMLTrainController">
    <children>
-      <AnchorPane layoutX="-2.0" layoutY="41.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="490.0" prefWidth="258.0" style="-fx-background-color: grey;">
+      <AnchorPane layoutX="-2.0" layoutY="-1.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="532.0" prefWidth="258.0" style="-fx-background-color: grey;">
          <children>
             <Button layoutX="22.0" layoutY="336.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="214.0" style="-fx-background-color: green;" text="AJOUTER" textAlignment="CENTER" textFill="#df6464" />
             <Button layoutX="22.0" layoutY="382.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="214.0" style="-fx-background-color: orange;" text="MODIFER" />
             <Button layoutX="22.0" layoutY="427.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="214.0" style="-fx-background-color: red;" text="SUPPRIMER" />
          </children>
       </AnchorPane>
-      <TableView fx:id="table_train" layoutX="256.0" layoutY="40.0" prefHeight="490.0" prefWidth="466.0" style="-fx-background-color: #fff;">
+      <TableView fx:id="table_train" layoutX="256.0" layoutY="-2.0" prefHeight="532.0" prefWidth="466.0" style="-fx-background-color: #fff;">
          <columns>
-            <TableColumn fx:id="col_id" prefWidth="98.4000244140625" style="-fx-font-size: 14; -fx-background-color: #f0f0f0; -fx-padding: 20px;" styleClass="centered-column-header" text="ID_TRAIN" />
-            <TableColumn fx:id="col_modele" maxWidth="4973.0" prefWidth="238.79998779296875" style="-fx-font-size: 14; -fx-background-color: #f0f0f0; -fx-padding: 20px;" styleClass="centered-column-header" text="MODELE" />
-            <TableColumn fx:id="col_capacite" prefWidth="127.19998779296873" style="-fx-font-size: 14; -fx-background-color: #f0f0f0; -fx-padding: 20px;" styleClass="centered-column-header" text="CAPACITE" />
+            <TableColumn fx:id="col_id" text="ID_TRAIN" />
+            <TableColumn fx:id="col_modele" prefWidth="251.0" text="MODELE" />
+            <TableColumn fx:id="col_capacite" prefWidth="142.40008544921875" text="CAPACITE" />
          </columns>
       </TableView>
-      <AnchorPane layoutX="-7.0" layoutY="-3.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="44.0" prefWidth="730.0" style="-fx-background-color: blue;" />
    </children>
 </AnchorPane>
