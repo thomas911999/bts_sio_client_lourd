@@ -38,7 +38,7 @@
                           </font>
                       </Label>
                       <!-- TextFields et autres boutons -->
-                      <TextField prefHeight="0.0" prefWidth="162.0">
+                      <TextField fx:id="id_field" prefHeight="0.0" prefWidth="162.0">
                           <font>
                               <Font name="System Bold" size="14.0" />
                           </font>
@@ -48,27 +48,27 @@
                               <Font name="System Bold" size="14.0" />
                           </font>
                       </Label>
-                      <TextField prefHeight="0.0" prefWidth="162.0" />
+                      <TextField fx:id="modele_field" prefHeight="0.0" prefWidth="162.0" />
                       <Label alignment="CENTER" prefHeight="46.0" prefWidth="192.0" text="CAPACITE" textFill="WHITE">
                           <font>
                               <Font name="System Bold" size="14.0" />
                           </font>
                       </Label>
-                      <TextField prefHeight="0.0" prefWidth="162.0" />
+                      <TextField fx:id="capacite_field" prefHeight="0.0" prefWidth="162.0" />
                </children>
             </VBox>
                 <VBox alignment="BOTTOM_LEFT" spacing="15" style="-fx-padding: 13px;">
-                  <Button mnemonicParsing="false" prefHeight="45.0" prefWidth="203.0" style="-fx-background-color: orange; -fx-background-size: 20px;" text="MODIFIER" textFill="WHITE">
-                  <font>
-                     <Font name="System Bold" size="18.0" />
-                  </font></Button>
-                  <Button mnemonicParsing="false" prefHeight="45.0" prefWidth="203.0" style="-fx-background-color: red;" text="SUPPRIMER" textFill="WHITE">
-                  <font>
-                     <Font name="System Bold" size="18.0" />
-                  </font></Button>
-                  <Button mnemonicParsing="false" prefHeight="45.0" prefWidth="203.0" style="-fx-background-color: green;" text="AJOUTER" textAlignment="CENTER" textFill="WHITE">
+                  <Button fx:id="button_ajouter" mnemonicParsing="false" prefHeight="45.0" prefWidth="203.0" style="-fx-background-color: #196105;" text="AJOUTER" textAlignment="CENTER" textFill="WHITE">
                   <font>
                      <Font name="System Bold" size="20.0" />
+                  </font></Button>
+                  <Button fx:id="button_modifier" mnemonicParsing="false" prefHeight="45.0" prefWidth="203.0" style="-fx-background-color: #e28719; -fx-background-size: 20px;" text="MODIFIER" textFill="WHITE">
+                  <font>
+                     <Font name="System Bold" size="18.0" />
+                  </font></Button>
+                  <Button fx:id="button_supprimer" mnemonicParsing="false" prefHeight="45.0" prefWidth="203.0" style="-fx-background-color: #ef0d0d;" text="SUPPRIMER" textFill="WHITE">
+                  <font>
+                     <Font name="System Bold" size="18.0" />
                   </font></Button>
               </VBox>              
             </children>
