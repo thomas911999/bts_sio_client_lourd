@@ -66,11 +66,30 @@ public class FXMLTrainController {
             pst = conn.prepareStatement(sql);
             pst.setInt(1,  Integer.parseInt(id_field.getText()));
             pst.setInt(3, Integer.parseInt( capacite_field.getText()));
-            pst.setString(3, modele_field.getText());
+            pst.setString(2, modele_field.getText());
+			pst.execute();
+			listM = MySQLConnect.getDataUsers();
+			table_train.setItems(listM);
 
-           // JOptionPane.showMessageDialog(null, "Train ajouté");
+            JOptionPane.showMessageDialog(null, "AJOUT TRAIN");
         } catch (Exception e) {
-           // JOptionPane.showMessageDialog(null, "Erreur");
+            JOptionPane.showMessageDialog(null, "ERREUR");
+        }
+    }
+	
+	public void Del_Train()
+    {
+        Train selectedItem = table_train.getSelectionModel().getSelectedItem();
+        String sql = "delete from train where ID_TRAIN = ?";
+        try {
+			conn = MySQLConnect.connectDb();
+            pst = conn.prepareStatement(sql);
+            pst.setInt(1, selectedItem.idProperty().getValue().intValue());
+			pst.execute();
+
+            JOptionPane.showMessageDialog(null, "SUPRESSION TRAIN");
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "ERREUR");
         }
     }
 

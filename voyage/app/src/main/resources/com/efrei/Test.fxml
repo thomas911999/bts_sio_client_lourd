@@ -58,7 +58,7 @@
                </children>
             </VBox>
                 <VBox alignment="BOTTOM_LEFT" spacing="15" style="-fx-padding: 13px;">
-                  <Button fx:id="button_ajouter" mnemonicParsing="false" prefHeight="45.0" prefWidth="203.0" style="-fx-background-color: #196105;" text="AJOUTER" textAlignment="CENTER" textFill="WHITE">
+                  <Button fx:id="button_ajouter" mnemonicParsing="false" onAction="#Add_Train" prefHeight="45.0" prefWidth="203.0" style="-fx-background-color: #196105;" text="AJOUTER" textAlignment="CENTER" textFill="WHITE">
                   <font>
                      <Font name="System Bold" size="20.0" />
                   </font></Button>
@@ -66,7 +66,7 @@
                   <font>
                      <Font name="System Bold" size="18.0" />
                   </font></Button>
-                  <Button fx:id="button_supprimer" mnemonicParsing="false" prefHeight="45.0" prefWidth="203.0" style="-fx-background-color: #ef0d0d;" text="SUPPRIMER" textFill="WHITE">
+                  <Button fx:id="button_supprimer" mnemonicParsing="false" onAction="#Del_Train" prefHeight="45.0" prefWidth="203.0" style="-fx-background-color: #ef0d0d;" text="SUPPRIMER" textFill="WHITE">
                   <font>
                      <Font name="System Bold" size="18.0" />
                   </font></Button>
