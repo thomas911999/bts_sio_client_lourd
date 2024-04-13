@@ -14,14 +14,14 @@
     <center>
         <TableView fx:id="table_train" prefHeight="434.0" prefWidth="386.0" style="-fx-background-color: #fff;">
             <columns>
-                <TableColumn fx:id="col_id" prefWidth="136.79992067813873" style="-fx-alignment: CENTER;" text="ID_TRAIN" />
-                <TableColumn fx:id="col_modele" prefWidth="215.20001220703125" style="-fx-alignment: CENTER;" text="MODELE" />
-                <TableColumn fx:id="col_capacite" prefWidth="209.60000610351562" style="-fx-alignment: CENTER;" text="CAPACITE" />
+                <TableColumn fx:id="col_id" prefWidth="97.59997403621674" style="-fx-alignment: CENTER;" text="ID_TRAIN" />
+                <TableColumn fx:id="col_modele" prefWidth="302.3999710083008" style="-fx-alignment: CENTER;" text="MODELE" />
+                <TableColumn fx:id="col_capacite" prefWidth="112.80001831054688" style="-fx-alignment: CENTER;" text="CAPACITE" />
             </columns>
         </TableView>
     </center>
     <left>
-        <VBox prefHeight="478.0" prefWidth="182.0" style="-fx-background-color: black;" BorderPane.alignment="CENTER">
+        <VBox prefHeight="495.0" prefWidth="230.0" style="-fx-background-color: black;" BorderPane.alignment="CENTER">
             <children>
                 <!-- Texte ajouté au-dessus du premier label -->
                 <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="100.0" prefWidth="250.0" style="-fx-background-color: black;" text="TRAIN MENU" textAlignment="CENTER" textFill="WHITE">
@@ -43,18 +43,24 @@
                               <Font name="System Bold" size="14.0" />
                           </font>
                       </TextField>
-                      <Label alignment="CENTER" prefHeight="46.0" prefWidth="162.0" text="MODELE" textFill="WHITE">
+                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="45.0" prefWidth="192.0" text="MODELE" textAlignment="CENTER" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Label>
+                      <TextField fx:id="modele_field" prefHeight="0.0" prefWidth="162.0">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font></TextField>
+                      <Label alignment="CENTER" prefHeight="38.0" prefWidth="192.0" text="CAPACITE" textFill="WHITE">
                           <font>
                               <Font name="System Bold" size="14.0" />
                           </font>
                       </Label>
-                      <TextField fx:id="modele_field" prefHeight="0.0" prefWidth="162.0" />
-                      <Label alignment="CENTER" prefHeight="46.0" prefWidth="192.0" text="CAPACITE" textFill="WHITE">
-                          <font>
-                              <Font name="System Bold" size="14.0" />
-                          </font>
-                      </Label>
-                      <TextField fx:id="capacite_field" prefHeight="0.0" prefWidth="162.0" />
+                      <TextField fx:id="capacite_field" prefHeight="0.0" prefWidth="162.0">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font></TextField>
                </children>
             </VBox>
                 <VBox alignment="BOTTOM_LEFT" spacing="15" style="-fx-padding: 13px;">
@@ -62,7 +68,7 @@
                   <font>
                      <Font name="System Bold" size="20.0" />
                   </font></Button>
-                  <Button fx:id="button_modifier" mnemonicParsing="false" prefHeight="45.0" prefWidth="203.0" style="-fx-background-color: #e28719; -fx-background-size: 20px;" text="MODIFIER" textFill="WHITE">
+                  <Button fx:id="button_modifier" mnemonicParsing="false" onAction="#Update_Train" prefHeight="45.0" prefWidth="203.0" style="-fx-background-color: #e28719; -fx-background-size: 20px;" text="MODIFIER" textFill="WHITE">
                   <font>
                      <Font name="System Bold" size="18.0" />
                   </font></Button>

@@ -29,6 +29,19 @@ public class Train {
     public StringProperty modeleProperty() {
         return MODELE;
     }
+    
+    public void SetId(Integer id) {
+        this.ID_TRAIN = new SimpleIntegerProperty(id);
+    }
+
+    public void SetCapacite(Integer capacite) {
+        this.CAPACITE = new SimpleIntegerProperty(capacite);
+    }
+    
+    public void SetModele(String modele) {
+        this.MODELE = new SimpleStringProperty(modele);
+    }
+
 
     // Other methods remain the same
 }

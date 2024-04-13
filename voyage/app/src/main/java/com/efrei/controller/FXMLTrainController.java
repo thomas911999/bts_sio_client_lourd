@@ -3,6 +3,7 @@ package com.efrei.controller;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 
 import javax.swing.JOptionPane;
 
@@ -69,8 +70,12 @@ public class FXMLTrainController {
 			table_train.setItems(listM);
 
             JOptionPane.showMessageDialog(null, "AJOUT TRAIN");
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "ERREUR");
+        } 
+        catch (NumberFormatException e) {
+	        JOptionPane.showMessageDialog(null, "Veuillez saisir des valeurs valides pour l'ID et la capacité du train.");
+	    }
+        catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "l'ID du train est déja dans ta table , veuillez en chosir un autre");
         }
     }
 	
@@ -78,6 +83,10 @@ public class FXMLTrainController {
     {
         Train selectedItem = table_train.getSelectionModel().getSelectedItem();
         String sql = "delete from train where ID_TRAIN = ?";
+	    if (selectedItem == null) {
+	        JOptionPane.showMessageDialog(null, "Aucun train sélectionné.");
+	        return;
+	    }
         try {
 			conn = MySQLConnect.connectDb();
             pst = conn.prepareStatement(sql);
@@ -86,27 +95,66 @@ public class FXMLTrainController {
 			listM.remove(selectedItem);
 
             JOptionPane.showMessageDialog(null, "SUPRESSION TRAIN");
-        } catch (Exception e) {
+        } 
+        
+        catch (Exception e) {
             JOptionPane.showMessageDialog(null, "ERREUR");
         }
     }
 
+	public void Update_Train()
+    {
+		 Train selectedItem = table_train.getSelectionModel().getSelectedItem();
+		    if (selectedItem == null) {
+		        JOptionPane.showMessageDialog(null, "Aucun train sélectionné.");
+		        return;
+		    }
+
+		    String sql = "UPDATE train SET ID_Train = ?, Modele = ?, CAPACITE = ? WHERE ID_Train = ?";
+		    
+		    try {
+				conn = MySQLConnect.connectDb();
+	            pst = conn.prepareStatement(sql);
+	            pst.setInt(1,  Integer.parseInt(id_field.getText()));
+	            pst.setString(2, modele_field.getText());
+	            pst.setInt(3, Integer.parseInt( capacite_field.getText()));
+	            pst.setInt(4, selectedItem.idProperty().getValue().intValue());
+	            pst.executeUpdate();
+
+		        int affectedRows = pst.executeUpdate();
+		        if (affectedRows > 0) {
+		            // Update the item in the listM
+		            selectedItem.SetId(Integer.parseInt(id_field.getText()));
+		            selectedItem.SetModele(modele_field.getText());
+		            selectedItem.SetCapacite(Integer.parseInt(capacite_field.getText()));
+		            
+		            JOptionPane.showMessageDialog(null, "Mise à jour du train réussie.");
+		        } else {
+		            JOptionPane.showMessageDialog(null, "Échec de la mise à jour du train.");
+		        }
+		    } catch (SQLException e) {
+		        JOptionPane.showMessageDialog(null, "Erreur lors de la mise à jour du train : " + e.getMessage());
+		    } catch (NumberFormatException e) {
+		        JOptionPane.showMessageDialog(null, "Veuillez saisir des valeurs valides pour l'ID et la capacité du train.");
+		    } catch (ClassNotFoundException e) {
+				e.printStackTrace();
+			}
+    }
+	
     public void initialize() {
+    	
         listM = MySQLConnect.getDataUsers();
         table_train.setItems(listM);
         System.out.println(listM);
-		
-	/*	table_train.parentProperty().addListener(new ChangeListener<Object>() {
-            @Override
-            public void changed(ObservableValue<?> observable, Object oldValue, Object newValue) {
-                double parentWidth = ((javafx.scene.Parent)newValue).getLayoutBounds().getWidth();
-                table_train.setPrefWidth(parentWidth * 0.7);
-            }
-        });*/
-		
-		
-		Train selectedItem = table_train.getSelectionModel().getSelectedItem();
 
+        table_train.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
+            if (newSelection != null) {
+            	id_field.setText(newSelection.idProperty().getValue().toString());
+            	capacite_field.setText(newSelection.capaciteProperty().getValue().toString());
+            	modele_field.setText(newSelection.modeleProperty().getValue().toString());
+            }
+        });
+		
         col_id.setCellValueFactory(cellData -> cellData.getValue().idProperty().asObject());
         col_capacite.setCellValueFactory(cellData -> cellData.getValue().capaciteProperty().asObject());
         col_modele.setCellValueFactory(cellData -> cellData.getValue().modeleProperty());
