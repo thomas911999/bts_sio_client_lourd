@@ -1,4 +1,4 @@
-package main.java.com.efrei.models;
+package com.efrei.models;
 
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;

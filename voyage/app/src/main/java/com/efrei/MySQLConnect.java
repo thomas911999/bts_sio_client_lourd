@@ -1,6 +1,7 @@
-package main.java.com.efrei;
+package com.efrei;
 
 import java.sql.Connection;
+
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -8,7 +9,8 @@ import java.sql.SQLException;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import main.java.com.efrei.models.Train;
+import com.efrei.models.Train;
+
 public class MySQLConnect {
 
     public static Connection connectDb() throws SQLException, ClassNotFoundException {

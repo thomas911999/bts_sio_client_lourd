@@ -1,21 +1,18 @@
 package com.efrei.controller;
-
+ 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import javafx.beans.value.ChangeListener;
-import javax.swing.JOptionPane;
 
-import javafx.beans.value.ObservableValue;
+import javax.swing.JOptionPane;
 
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
-import main.java.com.efrei.MySQLConnect;
-import main.java.com.efrei.models.Train;
+import javafx.scene.control.TableColumn;
+import com.efrei.MySQLConnect;
+import com.efrei.models.Train;
 
 public class FXMLTrainController {
 	
@@ -86,6 +83,7 @@ public class FXMLTrainController {
             pst = conn.prepareStatement(sql);
             pst.setInt(1, selectedItem.idProperty().getValue().intValue());
 			pst.execute();
+			listM.remove(selectedItem);
 
             JOptionPane.showMessageDialog(null, "SUPRESSION TRAIN");
         } catch (Exception e) {
@@ -98,16 +96,21 @@ public class FXMLTrainController {
         table_train.setItems(listM);
         System.out.println(listM);
 		
-		table_train.parentProperty().addListener(new ChangeListener<Object>() {
+	/*	table_train.parentProperty().addListener(new ChangeListener<Object>() {
             @Override
             public void changed(ObservableValue<?> observable, Object oldValue, Object newValue) {
                 double parentWidth = ((javafx.scene.Parent)newValue).getLayoutBounds().getWidth();
                 table_train.setPrefWidth(parentWidth * 0.7);
             }
-        });
+        });*/
+		
+		
+		Train selectedItem = table_train.getSelectionModel().getSelectedItem();
 
         col_id.setCellValueFactory(cellData -> cellData.getValue().idProperty().asObject());
         col_capacite.setCellValueFactory(cellData -> cellData.getValue().capaciteProperty().asObject());
         col_modele.setCellValueFactory(cellData -> cellData.getValue().modeleProperty());
+
+        
     }
 }
