@@ -95,9 +95,9 @@
           </Menu>
             <Menu mnemonicParsing="false" text="Action">
                <items>
-                  <MenuItem mnemonicParsing="false" text="Ajouter " />
-                  <MenuItem mnemonicParsing="false" text="Modifier" />
-                  <MenuItem mnemonicParsing="false" text="Supprimer" />
+                  <MenuItem fx:id="ajout_menu" mnemonicParsing="false" onAction="#Add_Train" text="Ajouter " />
+                  <MenuItem fx:id="modif_menu" mnemonicParsing="false" onAction="#Update_Train" text="Modifier" />
+                  <MenuItem fx:id="supprimer_menu" mnemonicParsing="false" onAction="#Del_Train" text="Supprimer" />
                </items>
             </Menu>
             <Menu mnemonicParsing="false" text="Mon compte">

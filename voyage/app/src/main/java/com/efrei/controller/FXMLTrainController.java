@@ -127,6 +127,7 @@ public class FXMLTrainController {
 		            selectedItem.SetId(Integer.parseInt(id_field.getText()));
 		            selectedItem.SetModele(modele_field.getText());
 		            selectedItem.SetCapacite(Integer.parseInt(capacite_field.getText()));
+		            table_train.refresh();
 		            
 		            JOptionPane.showMessageDialog(null, "Mise à jour du train réussie.");
 		        } else {
