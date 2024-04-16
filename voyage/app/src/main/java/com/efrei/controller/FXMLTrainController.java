@@ -1,5 +1,6 @@
 package com.efrei.controller;
  
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -9,11 +10,16 @@ import javax.swing.JOptionPane;
 
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 import javafx.scene.control.TableColumn;
 import com.efrei.MySQLConnect;
 import com.efrei.models.Train;
+
 
 public class FXMLTrainController {
 	
@@ -55,6 +61,24 @@ public class FXMLTrainController {
     ResultSet rs = null;
     PreparedStatement pst = null;
 
+    private void changeScene(String fxml) {
+        try {
+            Stage stage = (Stage) button_ajouter.getScene().getWindow();
+            Parent pane = FXMLLoader.load(getClass().getResource(fxml));
+            Scene scene = new Scene(pane);
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    // Method to switch to the reservation scene
+    @FXML
+    public void Switch_reservation() {
+        changeScene("/com/efrei/scene.fxml"); // Adjust the path as needed
+    }
+    
 	public void Add_Train()
     {
         

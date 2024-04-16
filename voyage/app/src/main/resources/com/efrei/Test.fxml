@@ -88,7 +88,7 @@
           <Menu mnemonicParsing="false" style="-fx-padding: 5;" text="Gérer">
             <items>
                   <MenuItem mnemonicParsing="false" text="Train" />
-                  <MenuItem mnemonicParsing="false" text="Réservation" />
+                  <MenuItem onAction="#Switch_reservation" mnemonicParsing="false" text="Réservation" />
                   <MenuItem mnemonicParsing="false" text="Billet" />
                   <MenuItem mnemonicParsing="false" text="Voyageur" />
             </items>
