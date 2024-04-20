@@ -82,79 +82,63 @@
                </font>
             </Label>              
                 <!-- Premier label -->
-                <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="42.0" prefWidth="162.0" text="Modele train" textAlignment="CENTER" textFill="WHITE">
+                <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="42.0" prefWidth="162.0" style="-fx-padding: 4;" text="Modele train" textAlignment="CENTER" textFill="WHITE">
                     <font>
                         <Font name="System Bold" size="16.0" />
                     </font>
                 </Label>
             <ChoiceBox fx:id="modele_gestion" prefHeight="26.0" prefWidth="158.0" />
-            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="42.0" prefWidth="162.0" text="Date voyage" textAlignment="CENTER" textFill="WHITE">
+            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="0.0" prefWidth="162.0" style="-fx-padding: 4;" text="Date voyage" textAlignment="CENTER" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font>
             </Label>
             <DatePicker fx:id="Date_gestion" prefHeight="16.0" prefWidth="210.0" showWeekNumbers="true" />
-            <HBox prefHeight="46.0" prefWidth="162.0" style="-fx-padding: 0;">
+            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="63.0" prefWidth="161.0" style="-fx-padding: 4;" text="Heure départ" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </Label>
+            <HBox prefHeight="26.0" prefWidth="179.0" style="-fx-padding: 0 6 0 6;">
                <children>
-                  <VBox prefHeight="74.0" prefWidth="81.0" style="-fx-padding: 5;">
-                     <children>
-                        <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="42.0" prefWidth="162.0" text="H debut" textAlignment="CENTER" textFill="WHITE">
-                           <font>
-                              <Font name="System Bold" size="16.0" />
-                           </font>
-                        </Label>
-                        <Spinner fx:id="H_deb" editable="true" />
-                     </children>
-                  </VBox>
-                  <VBox prefHeight="74.0" prefWidth="81.0" style="-fx-padding: 5;">
-                     <children>
-                        <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="42.0" prefWidth="162.0" text="M debut" textAlignment="CENTER" textFill="WHITE">
-                           <font>
-                              <Font name="System Bold" size="16.0" />
-                           </font>
-                        </Label>
-                        <Spinner fx:id="M_deb" editable="true" />
-                     </children>
-                  </VBox>
+                  <Spinner fx:id="H_deb" editable="true" prefHeight="26.0" prefWidth="70.0" />
+                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="26.0" prefWidth="31.0" text=":" textAlignment="CENTER" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font>
+                  </Label>
+                  <Spinner fx:id="M_deb" editable="true" prefHeight="26.0" prefWidth="73.0" />
                </children>
             </HBox>
-            <HBox prefHeight="46.0" prefWidth="162.0" style="-fx-padding: 0;">
+            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="63.0" prefWidth="161.0" style="-fx-padding: 4;" text="Heure arrivée" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </Label>
+            <HBox prefHeight="26.0" prefWidth="179.0" style="-fx-padding: 0 6 0 6;">
                <children>
-                  <VBox prefHeight="74.0" prefWidth="81.0" style="-fx-padding: 5;">
-                     <children>
-                        <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="42.0" prefWidth="162.0" text="H fin" textAlignment="CENTER" textFill="WHITE">
-                           <font>
-                              <Font name="System Bold" size="16.0" />
-                           </font>
-                        </Label>
-                        <Spinner fx:id="H_fin" editable="true" />
-                     </children>
-                  </VBox>
-                  <VBox prefHeight="74.0" prefWidth="81.0" style="-fx-padding: 5;">
-                     <children>
-                        <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="42.0" prefWidth="162.0" text="M fin" textAlignment="CENTER" textFill="WHITE">
-                           <font>
-                              <Font name="System Bold" size="16.0" />
-                           </font>
-                        </Label>
-                        <Spinner fx:id="M_fin" editable="true" />
-                     </children>
-                  </VBox>
+                  <Spinner fx:id="H_fin" editable="true" prefHeight="26.0" prefWidth="70.0" />
+                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="26.0" prefWidth="31.0" text=":" textAlignment="CENTER" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font>
+                  </Label>
+                  <Spinner fx:id="M_fin" editable="true" prefHeight="26.0" prefWidth="73.0" />
                </children>
             </HBox>
-                <Label alignment="CENTER" prefHeight="39.0" prefWidth="162.0" text="Prix" textFill="WHITE">
+                <Label alignment="CENTER" prefHeight="39.0" prefWidth="162.0" style="-fx-padding: 4;" text="Prix" textFill="WHITE">
                     <font>
                         <Font name="System Bold" size="16.0" />
                     </font>
                 </Label>
             <TextField fx:id="prix_gestion" />
-            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="42.0" prefWidth="162.0" text="Ville depart" textAlignment="CENTER" textFill="WHITE">
+            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="42.0" prefWidth="162.0" style="-fx-padding: 4;" text="Ville depart" textAlignment="CENTER" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font>
             </Label>
             <ChoiceBox fx:id="ville_depart_gestion" prefHeight="26.0" prefWidth="166.0" />
-            <Label alignment="CENTER" prefHeight="39.0" prefWidth="162.0" text="Ville Arrivée" textFill="WHITE">
+            <Label alignment="CENTER" prefHeight="39.0" prefWidth="162.0" style="-fx-padding: 4;" text="Ville Arrivée" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font>
