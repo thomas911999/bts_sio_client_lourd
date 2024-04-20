@@ -12,9 +12,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="535.0" prefWidth="743.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.efrei.controller.FXMLTrainController">
+<BorderPane prefHeight="696.0" prefWidth="743.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.efrei.controller.FXMLTrainController">
     <center>
-        <TableView fx:id="table_train" prefHeight="434.0" prefWidth="386.0" style="-fx-background-color: #fff;">
+        <TableView fx:id="table_train" prefHeight="696.0" prefWidth="743.0" style="-fx-background-color: #fff;">
             <columns>
                 <TableColumn fx:id="col_id" prefWidth="97.59997403621674" style="-fx-alignment: CENTER;" text="ID_TRAIN" />
                 <TableColumn fx:id="col_modele" prefWidth="302.3999710083008" style="-fx-alignment: CENTER;" text="MODELE" />
@@ -88,8 +88,8 @@
           <Menu mnemonicParsing="false" style="-fx-padding: 5;" text="Gérer">
             <items>
                   <MenuItem mnemonicParsing="false" text="Train" />
-                  <MenuItem onAction="#Switch_reservation" mnemonicParsing="false" text="Réservation" />
-                  <MenuItem mnemonicParsing="false" text="Billet" />
+                  <MenuItem mnemonicParsing="false" onAction="#Switch_reservation" text="Réservation" />
+                  <MenuItem mnemonicParsing="false" onAction="#Switch_Billet" text="Billet" />
                   <MenuItem mnemonicParsing="false" text="Voyageur" />
             </items>
           </Menu>

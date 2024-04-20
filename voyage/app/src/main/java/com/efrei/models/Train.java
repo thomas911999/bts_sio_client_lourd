@@ -1,8 +1,11 @@
 package com.efrei.models;
 
+import com.efrei.MySQLConnect;
+
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.StringProperty;
+import javafx.collections.ObservableList;
 import javafx.beans.property.SimpleStringProperty;
 
 public class Train {
@@ -42,6 +45,16 @@ public class Train {
         this.MODELE = new SimpleStringProperty(modele);
     }
 
+	public static Train get_Train(Integer id_train) {
+	    ObservableList<Train> getDataTrain = MySQLConnect.getDataTrain();
+	    
+	    for (Train t : getDataTrain) {
+	        Integer t_train = t.idProperty().getValue(); // Getting the Integer value from IntegerProperty
+	        if (t_train.equals(id_train)) // Using equals method for comparison
+	            return t;
+	    }
+	    return null;
+	}
 
     // Other methods remain the same
 }

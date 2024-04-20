@@ -79,6 +79,11 @@ public class FXMLTrainController {
         changeScene("/com/efrei/scene.fxml"); // Adjust the path as needed
     }
     
+    @FXML
+    public void Switch_Billet() {
+    	changeScene("/com/efrei/Billet.fxml"); // Adjust the path as needed
+    }
+    
 	public void Add_Train()
     {
         
@@ -90,7 +95,7 @@ public class FXMLTrainController {
             pst.setInt(3, Integer.parseInt( capacite_field.getText()));
             pst.setString(2, modele_field.getText());
 			pst.execute();
-			listM = MySQLConnect.getDataUsers();
+			listM = MySQLConnect.getDataTrain();
 			table_train.setItems(listM);
 
             JOptionPane.showMessageDialog(null, "AJOUT TRAIN");
@@ -168,7 +173,7 @@ public class FXMLTrainController {
 	
     public void initialize() {
     	
-        listM = MySQLConnect.getDataUsers();
+        listM = MySQLConnect.getDataTrain();
         table_train.setItems(listM);
         System.out.println(listM);
 
@@ -183,7 +188,6 @@ public class FXMLTrainController {
         col_id.setCellValueFactory(cellData -> cellData.getValue().idProperty().asObject());
         col_capacite.setCellValueFactory(cellData -> cellData.getValue().capaciteProperty().asObject());
         col_modele.setCellValueFactory(cellData -> cellData.getValue().modeleProperty());
-
         
     }
 }

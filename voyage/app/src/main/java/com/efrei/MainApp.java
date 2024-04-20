@@ -11,7 +11,7 @@ public class MainApp extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("Test.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("Train.fxml"));
         
         // Add the ImageView to your scene or layout
         // For example, if you want to add it to the root node:
