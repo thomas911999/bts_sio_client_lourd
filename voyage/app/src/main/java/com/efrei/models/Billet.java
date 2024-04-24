@@ -1,5 +1,6 @@
 package com.efrei.models;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -109,12 +110,11 @@ public class Billet {
         }
     }
     
-    public static StringProperty Date_to_string_day(ObjectProperty<LocalDateTime> Time)
+    public static StringProperty Date_to_string_day(LocalDateTime objectProperty)
     {
-    	if (Time != null && Time.get() != null) {
-            LocalDateTime dateTime = Time.get();
+    	if (objectProperty != null ) {
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-            String formattedDateTime = dateTime.format(formatter);
+            String formattedDateTime = objectProperty.format(formatter);
             return new SimpleStringProperty(formattedDateTime);
         } else {
             return new SimpleStringProperty("");
