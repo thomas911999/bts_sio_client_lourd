@@ -2,13 +2,11 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ChoiceBox?>
-<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.control.Slider?>
 <?import javafx.scene.control.Spinner?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
@@ -154,17 +152,17 @@
             <Label prefHeight="80.0" prefWidth="162.0" />
             <VBox prefHeight="244.0" prefWidth="23.0" spacing="15" style="-fx-padding: 15px;">
                <children>
-                  <Button fx:id="button_ajouter" mnemonicParsing="false" onAction="#Add_Billet" prefHeight="37.0" prefWidth="144.0" style="-fx-background-color: #196105;" text="AJOUTER" textAlignment="CENTER" textFill="WHITE">
+                  <Button fx:id="button_ajouter" mnemonicParsing="false" onAction="#Add_Billet" prefHeight="37.0" prefWidth="144.0" style="-fx-background-color: #196105; -fx-background-radius: 10;" text="AJOUTER" textAlignment="CENTER" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="16.0" />
                      </font>
                   </Button>
-                  <Button fx:id="button_modifier" mnemonicParsing="false" onAction="#Update_Billet" prefHeight="45.0" prefWidth="203.0" style="-fx-background-color: #e28719; -fx-background-size: 20px;" text="MODIFIER" textFill="WHITE">
+                  <Button fx:id="button_modifier" mnemonicParsing="false" onAction="#Update_Billet" prefHeight="45.0" prefWidth="203.0" style="-fx-background-color: #e28719; -fx-background-size: 20px; -fx-background-radius: 10px;" text="MODIFIER" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="16.0" />
                      </font>
                   </Button>
-                  <Button fx:id="button_supprimer" mnemonicParsing="false" onAction="#Del_Billet" prefHeight="45.0" prefWidth="203.0" style="-fx-background-color: #ef0d0d;" text="SUPPRIMER" textFill="WHITE">
+                  <Button fx:id="button_supprimer" mnemonicParsing="false" onAction="#Del_Billet" prefHeight="45.0" prefWidth="203.0" style="-fx-background-color: #ef0d0d; -fx-background-radius: 10px;" text="SUPPRIMER" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="16.0" />
                      </font>
@@ -187,31 +185,43 @@
                   <Font name="System Bold" size="16.0" />
                </font>
             </Label>
-            <ComboBox fx:id="modele_filtre" editable="true" onAction="#Search_modele" prefHeight="27.0" prefWidth="210.0" visibleRowCount="7" />
+            <ChoiceBox fx:id="modele_filtre" prefHeight="26.0" prefWidth="167.0" />
             <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="42.0" prefWidth="162.0" text="Date voyage" textAlignment="CENTER" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font>
             </Label>
-            <DatePicker onAction="#Search_Date" prefHeight="16.0" prefWidth="210.0" showWeekNumbers="true" />
-            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="42.0" prefWidth="162.0" text="Ville depart" textAlignment="CENTER" textFill="WHITE">
+            <DatePicker fx:id="Date_filtre" prefHeight="29.0" prefWidth="163.0" showWeekNumbers="true" />
+            <VBox alignment="CENTER" prefHeight="58.0" prefWidth="162.0">
+               <children>
+                  <Button fx:id="Reset_date" mnemonicParsing="false" onAction="#reset" prefHeight="32.0" prefWidth="153.0" style="-fx-background-color: #000000; -fx-padding: 0px; -fx-background-radius: 20px; -fx-border-radius: 20px;" text="Réinitialiser la date" textAlignment="CENTER" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Button>
+               </children>
+            </VBox>
+            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="40.0" prefWidth="163.0" text="Ville depart" textAlignment="CENTER" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font>
             </Label>
-            <ComboBox fx:id="ville_depart_filtre" editable="true" onAction="#Search_VIlle_Depart" prefHeight="27.0" prefWidth="210.0" visibleRowCount="7" />
+            <ChoiceBox fx:id="ville_depart_filtre" prefHeight="26.0" prefWidth="169.0" />
             <Label alignment="CENTER" prefHeight="39.0" prefWidth="162.0" text="Ville Arrivée" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font>
             </Label>
-            <ComboBox fx:id="ville_arrivée_filtre" editable="true" onAction="#Search_Ville_Arrivée" prefHeight="27.0" prefWidth="170.0" visibleRowCount="7" />
-            <Label alignment="CENTER" prefHeight="39.0" prefWidth="162.0" text="Prix" textFill="WHITE">
-               <font>
-                  <Font name="System Bold" size="16.0" />
-               </font>
-            </Label>
-            <Slider prefHeight="43.0" prefWidth="210.0" />
+            <ChoiceBox fx:id="ville_arrivée_filtre" prefHeight="26.0" prefWidth="169.0" />
+            <VBox alignment="CENTER" prefHeight="98.0" prefWidth="170.0">
+               <children>
+                  <Button fx:id="Reset_all" mnemonicParsing="false" onAction="#reset_all" prefHeight="42.0" prefWidth="154.0" style="-fx-background-color: #000000; -fx-padding: 0px; -fx-background-radius: 10px; -fx-border-radius: 20px;" text="Tout réinitialiser" textAlignment="CENTER" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Button>
+               </children>
+            </VBox>
          </children>
       </VBox>
    </left>

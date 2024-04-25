@@ -5,6 +5,7 @@ import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -124,12 +125,16 @@ public class FXMLBillet {
     @FXML
     private Button Reset_all;
 	
-	////// GESTION CONTROLLER ///////////////////
+	////// GESTION CONTROLLER /////////////////// 
 
+    
+    @FXML
+    private ChoiceBox<Train> modele_gestion;
+    
+    
     @FXML
     private DatePicker Date_gestion;
     
-
     @FXML
     private Spinner<Integer> H_deb;
 
@@ -154,9 +159,6 @@ public class FXMLBillet {
 
     @FXML
     private Button button_supprimer;
-
-    @FXML
-    private ChoiceBox<Train> modele_gestion;
 
     @FXML
     private ChoiceBox<Ville> ville_arrivée_gestion;
@@ -268,7 +270,69 @@ public class FXMLBillet {
     
     @FXML
     void Update_Billet(ActionEvent event) {
+    	
+		 Billet selectedItem = table_billet.getSelectionModel().getSelectedItem();
+		    if (selectedItem == null) {
+		        JOptionPane.showMessageDialog(null, "Aucun billet sélectionné.");
+		        return;
+		    }
+		    
+	    	Train train = modele_gestion.getValue();
+	    	LocalDate selectedDate = Date_gestion.getValue();
 
+	    	// Get the selected hour and minute from the Spinners
+	    	int hour_deb = H_deb.getValue();
+	    	int minute_deb = M_deb.getValue();
+	    	
+	    	int hour_fin = H_fin.getValue();
+	    	int minute_fin = M_fin.getValue();
+	    	
+	    	Ville v_depart = ville_depart_gestion.getValue();
+	    	Ville v_arrive = ville_arrivée_gestion.getValue();
+	    	
+	    	float price = Float.parseFloat(prix_gestion.getText());
+
+	    	// Create a Timestamp object with the selected date, hour, and minute
+	    	Timestamp time_dep = Timestamp.valueOf(selectedDate.atTime(hour_deb, minute_deb));
+	    	Timestamp time_fin = Timestamp.valueOf(selectedDate.atTime(hour_fin, minute_fin));
+		    
+
+	    	String sql = "UPDATE billet SET ID_Train = ?, H_DEPART = ?, H_FIN = ?, V_DEPART = ?, V_ARRIVEE = ?, PRIX_BILLET = ? WHERE ID_RESERVATION = ?";
+		    
+		    try {
+				conn = MySQLConnect.connectDb();
+	            pst = conn.prepareStatement(sql);
+				pst.setInt(1,  train.idProperty().getValue()); // ID_TRAIN
+	            pst.setTimestamp(2, time_dep); // H_DEPART
+	            pst.setTimestamp(3, time_fin); // H_FIN
+	            pst.setInt(4,  v_depart.getId_Ville().getValue()); // V_DEPART
+	            pst.setInt(5,  v_arrive.getId_Ville().getValue()); // V_ARRIVE
+	            pst.setFloat(6,  price); // PRIX_BILLET
+	            pst.setInt(7,  selectedItem.getID_RESERVATION().getValue());
+	            pst.executeUpdate();
+
+		        int affectedRows = pst.executeUpdate();
+		        if (affectedRows > 0) {
+		            // Update the item in the listM
+		            selectedItem.setID_TRAIN(train);
+		            selectedItem.setH_DEB(time_dep.toLocalDateTime());
+		            selectedItem.setH_DEB(time_fin.toLocalDateTime());
+		            selectedItem.setV_ARRIVE(v_arrive);
+		            selectedItem.setV_DEPART(v_depart);
+		            selectedItem.setPrix(price);
+		            table_billet.refresh();
+		            
+		            JOptionPane.showMessageDialog(null, "Mise à jour des billets réussie.");
+		        } else {
+		            JOptionPane.showMessageDialog(null, "Échec de la mise à jour du billet.");
+		        }
+		    } catch (SQLException e) {
+		        JOptionPane.showMessageDialog(null, "Erreur lors de la mise à jour du billet : " + e.getMessage());
+		    } catch (NumberFormatException e) {
+		        JOptionPane.showMessageDialog(null, "Veuillez saisir des valeurs valides pour le prix du billet et remplir tous les champs");
+		    } catch (ClassNotFoundException e) {
+				e.printStackTrace();
+			}
     }
 
     @FXML
@@ -365,7 +429,7 @@ public class FXMLBillet {
 		        if (train == null) {
 		            return "Aucun";
 		        } else {
-		            Integer id = train.capaciteProperty().get(); // Supposons qu'il y a toujours un seul ID dans la Map
+		            Integer id = train.idProperty().get(); // Supposons qu'il y a toujours un seul ID dans la Map
 		            String modele = train.modeleProperty().getValue();
 		            return modele + "\nID: " + id + "\t\t\t"; // Afficher l'ID avec le modèle
 		        }
@@ -471,6 +535,23 @@ public class FXMLBillet {
 	    listBillet = MySQLConnect.getDataBillet();
         table_billet.setItems(listBillet);
 	    
+        table_billet.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
+            if (newSelection != null) {
+            	modele_gestion.setValue(newSelection.getID_TRAIN().getValue());
+            	Date_gestion.setValue(newSelection.getH_DEB().get().toLocalDate());
+            	var  initialTime = newSelection.getH_DEB().get();
+            	H_deb.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 23, initialTime.getHour()));
+            	M_deb.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 23, initialTime.getMinute()));
+            	var  initialTime_Fin = newSelection.getH_FIN().get();
+            	H_fin.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 23, initialTime_Fin.getHour()));
+            	M_fin.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 23, initialTime_Fin.getMinute()));
+    	    	ville_depart_gestion.setValue(newSelection.getV_DEPART());
+    	    	ville_arrivée_gestion.setValue(newSelection.getV_ARRIVE());
+            	prix_gestion.setText(newSelection.getPrix().getValue().toString());
+            }
+        });
+        
+        
         col_modele.setCellValueFactory(cellData -> cellData.getValue().getID_TRAIN().get().modeleProperty());
         col_prix.setCellValueFactory(cellData -> cellData.getValue().getPrix().asObject());
         col_Ville_depart.setCellValueFactory(cellData -> cellData.getValue().getV_DEPART().getVille());

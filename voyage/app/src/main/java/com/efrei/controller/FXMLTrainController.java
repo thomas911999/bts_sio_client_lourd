@@ -175,7 +175,7 @@ public class FXMLTrainController {
     	
         listM = MySQLConnect.getDataTrain();
         table_train.setItems(listM);
-        System.out.println(listM);
+     //   System.out.println(listM);
 
         table_train.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
             if (newSelection != null) {
