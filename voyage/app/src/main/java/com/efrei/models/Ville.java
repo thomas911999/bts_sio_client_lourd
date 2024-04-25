@@ -1,5 +1,7 @@
 package com.efrei.models;
 
+import java.util.Objects;
+
 import com.efrei.MySQLConnect;
 
 import javafx.beans.property.IntegerProperty;
@@ -51,4 +53,22 @@ public class Ville {
 	    }
 	    return null;
 	}
+	
+    
+    @Override
+    public boolean equals(Object obj) {
+        // Vérifie si l'objet en argument est une instance de Ville
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
+
+        // Convertit l'objet en argument en Ville
+        Ville other = (Ville) obj;
+
+        // Compare les attributs id_ville et libelle
+        return Id_Ville == other.Id_Ville && Objects.equals(Ville, other.Ville);
+    }
 }

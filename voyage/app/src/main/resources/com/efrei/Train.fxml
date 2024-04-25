@@ -12,31 +12,30 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="696.0" prefWidth="743.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.efrei.controller.FXMLTrainController">
+<BorderPane prefHeight="697.0" prefWidth="749.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.efrei.controller.FXMLTrainController">
     <center>
         <TableView fx:id="table_train" prefHeight="696.0" prefWidth="743.0" style="-fx-background-color: #fff;">
             <columns>
-                <TableColumn fx:id="col_id" prefWidth="97.59997403621674" style="-fx-alignment: CENTER;" text="ID_TRAIN" />
-                <TableColumn fx:id="col_modele" prefWidth="302.3999710083008" style="-fx-alignment: CENTER;" text="MODELE" />
-                <TableColumn fx:id="col_capacite" prefWidth="112.80001831054688" style="-fx-alignment: CENTER;" text="CAPACITE" />
+                <TableColumn fx:id="col_id" minWidth="150.0" prefWidth="133.59999692440033" style="-fx-alignment: CENTER;" text="ID_TRAIN" />
+                <TableColumn fx:id="col_modele" minWidth="250.0" prefWidth="200.0" style="-fx-alignment: CENTER;" text="MODELE" />
+                <TableColumn fx:id="col_capacite" minWidth="5.5999755859375" prefWidth="156.79995727539062" style="-fx-alignment: CENTER;" text="CAPACITE" />
             </columns>
         </TableView>
     </center>
     <left>
-        <VBox prefHeight="495.0" prefWidth="230.0" style="-fx-background-color: black;" BorderPane.alignment="CENTER">
+        <VBox prefHeight="546.0" prefWidth="198.0" style="-fx-background-color: #3c4691; -fx-padding: 7;" BorderPane.alignment="CENTER">
             <children>
-                <!-- Texte ajouté au-dessus du premier label -->
-                <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="100.0" prefWidth="250.0" style="-fx-background-color: black;" text="TRAIN MENU" textAlignment="CENTER" textFill="WHITE">
-                  <font>
-                      <Font name="System Bold" size="20.0" />
-                  </font>
-              </Label>
-            <VBox prefHeight="200.0" prefWidth="100.0" style="-fx-padding: 10px;">
+            <Label alignment="CENTER" contentDisplay="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="54.0" prefWidth="194.0" text="GESTION" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="24.0" />
+               </font>
+            </Label>
+            <VBox prefHeight="568.0" prefWidth="166.0" style="-fx-padding: 10px;">
                <children>              
                       <!-- Premier label -->
-                      <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="46.0" prefWidth="192.0" text="ID TRAIN" textAlignment="CENTER" textFill="WHITE">
+                      <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="29.0" prefWidth="168.0" text="ID TRAIN" textAlignment="CENTER" textFill="WHITE">
                           <font>
-                              <Font name="System Bold" size="14.0" />
+                              <Font name="System Bold" size="16.0" />
                           </font>
                       </Label>
                       <!-- TextFields et autres boutons -->
@@ -45,73 +44,86 @@
                               <Font name="System Bold" size="14.0" />
                           </font>
                       </TextField>
-                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="45.0" prefWidth="192.0" text="MODELE" textAlignment="CENTER" textFill="WHITE">
+                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="41.0" prefWidth="158.0" text="MODELE" textAlignment="CENTER" textFill="WHITE">
                      <font>
-                        <Font name="System Bold" size="14.0" />
+                        <Font name="System Bold" size="16.0" />
                      </font>
                   </Label>
                       <TextField fx:id="modele_field" prefHeight="0.0" prefWidth="162.0">
                      <font>
                         <Font name="System Bold" size="14.0" />
                      </font></TextField>
-                      <Label alignment="CENTER" prefHeight="38.0" prefWidth="192.0" text="CAPACITE" textFill="WHITE">
+                      <Label alignment="CENTER" prefHeight="37.0" prefWidth="158.0" text="CAPACITE" textFill="WHITE">
                           <font>
-                              <Font name="System Bold" size="14.0" />
+                              <Font name="System Bold" size="16.0" />
                           </font>
                       </Label>
                       <TextField fx:id="capacite_field" prefHeight="0.0" prefWidth="162.0">
                      <font>
                         <Font name="System Bold" size="14.0" />
                      </font></TextField>
+                      <VBox alignment="CENTER" prefHeight="244.0" prefWidth="178.0" spacing="15" style="-fx-padding: 13px;">
+                        <Button fx:id="button_ajouter" mnemonicParsing="false" onAction="#Add_Train" prefHeight="35.0" prefWidth="122.0" style="-fx-background-color: #196105; -fx-background-radius: 10;" text="AJOUTER" textAlignment="CENTER" textFill="WHITE">
+                        <font>
+                           <Font name="System Bold" size="16.0" />
+                        </font>
+                     </Button>
+                        <Button fx:id="button_modifier" mnemonicParsing="false" onAction="#Update_Train" prefHeight="38.0" prefWidth="121.0" style="-fx-background-color: #e28719; -fx-background-size: 20px; -fx-background-radius: 10;" text="MODIFIER" textFill="WHITE">
+                        <font>
+                           <Font name="System Bold" size="16.0" />
+                        </font>
+                     </Button>
+                        <Button fx:id="button_supprimer" mnemonicParsing="false" onAction="#Del_Train" prefHeight="38.0" prefWidth="126.0" style="-fx-background-color: #ef0d0d; -fx-background-radius: 10;" text="SUPPRIMER" textFill="WHITE">
+                        <font>
+                           <Font name="System Bold" size="16.0" />
+                        </font>
+                     </Button>
+                    </VBox>
                </children>
-            </VBox>
-                <VBox alignment="BOTTOM_LEFT" spacing="15" style="-fx-padding: 13px;">
-                  <Button fx:id="button_ajouter" mnemonicParsing="false" onAction="#Add_Train" prefHeight="45.0" prefWidth="203.0" style="-fx-background-color: #196105;" text="AJOUTER" textAlignment="CENTER" textFill="WHITE">
-                  <font>
-                     <Font name="System Bold" size="20.0" />
-                  </font></Button>
-                  <Button fx:id="button_modifier" mnemonicParsing="false" onAction="#Update_Train" prefHeight="45.0" prefWidth="203.0" style="-fx-background-color: #e28719; -fx-background-size: 20px;" text="MODIFIER" textFill="WHITE">
-                  <font>
-                     <Font name="System Bold" size="18.0" />
-                  </font></Button>
-                  <Button fx:id="button_supprimer" mnemonicParsing="false" onAction="#Del_Train" prefHeight="45.0" prefWidth="203.0" style="-fx-background-color: #ef0d0d;" text="SUPPRIMER" textFill="WHITE">
-                  <font>
-                     <Font name="System Bold" size="18.0" />
-                  </font></Button>
-              </VBox>              
+            </VBox>              
             </children>
         </VBox>
     </left>
    <top>
-      <MenuBar BorderPane.alignment="CENTER">
-        <menus>
-          <Menu mnemonicParsing="false" style="-fx-padding: 5;" text="Gérer">
-            <items>
-                  <MenuItem mnemonicParsing="false" text="Train" />
-                  <MenuItem mnemonicParsing="false" onAction="#Switch_reservation" text="Réservation" />
-                  <MenuItem mnemonicParsing="false" onAction="#Switch_Billet" text="Billet" />
-                  <MenuItem mnemonicParsing="false" text="Voyageur" />
-            </items>
-          </Menu>
-            <Menu mnemonicParsing="false" text="Action">
-               <items>
-                  <MenuItem fx:id="ajout_menu" mnemonicParsing="false" onAction="#Add_Train" text="Ajouter " />
-                  <MenuItem fx:id="modif_menu" mnemonicParsing="false" onAction="#Update_Train" text="Modifier" />
-                  <MenuItem fx:id="supprimer_menu" mnemonicParsing="false" onAction="#Del_Train" text="Supprimer" />
-               </items>
-            </Menu>
-            <Menu mnemonicParsing="false" text="Mon compte">
-              <items>
-                  <MenuItem mnemonicParsing="false" text="Gérer les administrateurs" />
-                <MenuItem mnemonicParsing="false" text="Se déconnecter" />
-              </items>
-            </Menu>
-          <Menu mnemonicParsing="false" text="Quitter">
-            <items>
-              <MenuItem mnemonicParsing="false" text="Quitter" />
-            </items>
-          </Menu>
-        </menus>
-      </MenuBar>
+      <VBox prefHeight="69.0" prefWidth="770.0" BorderPane.alignment="CENTER">
+         <children>
+            <MenuBar>
+               <menus>
+                  <Menu mnemonicParsing="false" style="-fx-padding: 5;" text="Gérer">
+                     <items>
+                        <MenuItem mnemonicParsing="false" text="Train" />
+                        <MenuItem mnemonicParsing="false" onAction="#Switch_reservation" text="Réservation" />
+                        <MenuItem mnemonicParsing="false" onAction="#Switch_Billet" text="Billet" />
+                        <MenuItem mnemonicParsing="false" text="Voyageur" />
+                     </items>
+                  </Menu>
+                  <Menu mnemonicParsing="false" text="Action">
+                     <items>
+                        <MenuItem fx:id="ajout_menu" mnemonicParsing="false" onAction="#Add_Train" text="Ajouter " />
+                        <MenuItem fx:id="modif_menu" mnemonicParsing="false" onAction="#Update_Train" text="Modifier" />
+                        <MenuItem fx:id="supprimer_menu" mnemonicParsing="false" onAction="#Del_Train" text="Supprimer" />
+                     </items>
+                  </Menu>
+                  <Menu mnemonicParsing="false" text="Mon compte">
+                     <items>
+                        <MenuItem mnemonicParsing="false" text="Gérer les administrateurs" />
+                        <MenuItem mnemonicParsing="false" text="Se déconnecter" />
+                     </items>
+                  </Menu>
+                  <Menu mnemonicParsing="false" text="Quitter">
+                     <items>
+                        <MenuItem mnemonicParsing="false" text="Quitter" />
+                     </items>
+                  </Menu>
+               </menus>
+            </MenuBar>
+                <!-- Texte ajouté au-dessus du premier label -->
+                <Label alignment="CENTER" contentDisplay="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="50.0" prefWidth="750.0" style="-fx-background-color: black;" text="TRAIN MENU" textAlignment="CENTER" textFill="WHITE">
+                  <font>
+                      <Font name="System Bold" size="20.0" />
+                  </font>
+              </Label>
+         </children>
+      </VBox>
    </top>
 </BorderPane>

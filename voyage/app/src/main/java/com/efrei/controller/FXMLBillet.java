@@ -221,7 +221,7 @@ public class FXMLBillet {
     	Ville v_depart = ville_depart_gestion.getValue();
     	Ville v_arrive = ville_arrivée_gestion.getValue();
     	
-    	int price = Integer.parseInt(prix_gestion.getText());
+    	float price = Float.parseFloat(prix_gestion.getText());
 
     	// Create a Timestamp object with the selected date, hour, and minute
     	Timestamp time_dep = Timestamp.valueOf(selectedDate.atTime(hour_deb, minute_deb));
@@ -244,7 +244,7 @@ public class FXMLBillet {
             pst.setTimestamp(3, time_fin); // H_FIN
             pst.setInt(4,  v_depart.getId_Ville().getValue()); // V_DEPART
             pst.setInt(5,  v_arrive.getId_Ville().getValue()); // V_ARRIVE
-            pst.setInt(6,  price); // PRIX_BILLET
+            pst.setFloat(6,  price); // PRIX_BILLET
             pst.execute();
 			
 			listBillet = MySQLConnect.getDataBillet();
@@ -297,7 +297,7 @@ public class FXMLBillet {
 	    	Timestamp time_fin = Timestamp.valueOf(selectedDate.atTime(hour_fin, minute_fin));
 		    
 
-	    	String sql = "UPDATE billet SET ID_Train = ?, H_DEPART = ?, H_FIN = ?, V_DEPART = ?, V_ARRIVEE = ?, PRIX_BILLET = ? WHERE ID_RESERVATION = ?";
+	    	String sql = "UPDATE billet SET ID_Train = ?, H_DEPART = ?, H_FIN = ?, V_DEPART = ?, V_ARRIVEE = ?, PRIX_BILLET = ? WHERE ID_Train = ?";
 		    
 		    try {
 				conn = MySQLConnect.connectDb();
@@ -308,7 +308,7 @@ public class FXMLBillet {
 	            pst.setInt(4,  v_depart.getId_Ville().getValue()); // V_DEPART
 	            pst.setInt(5,  v_arrive.getId_Ville().getValue()); // V_ARRIVE
 	            pst.setFloat(6,  price); // PRIX_BILLET
-	            pst.setInt(7,  selectedItem.getID_RESERVATION().getValue());
+	            pst.setInt(7,  train.idProperty().getValue());
 	            pst.executeUpdate();
 
 		        int affectedRows = pst.executeUpdate();
@@ -442,70 +442,61 @@ public class FXMLBillet {
 		
 		choicebox_modele.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
 		        {
-		        	choicebox_modele.getItems().remove(newValue);
-		            // Ajouter l'élément sélectionné au début de la liste
-		        	choicebox_modele.getItems().add(0, newValue);
-		            // Définir l'élément sélectionné comme la nouvelle valeur
-		        	choicebox_modele.setValue(newValue);
+		        	//int selectedIndex = choicebox_modele.getSelectionModel().getSelectedIndex();
+		        	var train = choicebox_modele.getValue();
+
+		        		if (choicebox_modele.getItems().remove(train))
+		        			{
+		        				choicebox_modele.getItems().add(0, newValue);
+		        				choicebox_modele.setValue(newValue); // Sélectionner la nouvelle valeur
+		        			}
 		        }
 		    });
     }
 
     
-    public void Item_gestion_ville(ChoiceBox<Ville> v)
-    {
-	listVille = MySQLConnect.getDataVille();
-	
-	ObservableList<Ville> ville_gestion_items = FXCollections.observableArrayList();
-
-	for (Ville ville : listVille) {
-
-	    ville_gestion_items.add(ville);
-	}
-
-	v.setItems(ville_gestion_items);
-
-    v.setConverter(new StringConverter<Ville>() {
-        @Override
-        public String toString(Ville ville) {
-            if (ville == null) {
-                return "Aucun";
-            } else {
-                return ville.getVille().getValue();
-            }
-        }
-
-        @Override
-        public Ville fromString(String string) {
-            return null; // Conversion inverse, pas nécessaire pour une ChoiceBox non éditable
-        }
-    });
+    public void Item_gestion_ville(ChoiceBox<Ville> v) {
+        // Récupérer toutes les villes depuis la base de données
+        listVille = MySQLConnect.getDataVille();
         
-    v.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
-        if (newValue != null) {
-            v.getItems().remove(newValue);
-            // Ajouter l'élément sélectionné au début de la liste
-            v.getItems().add(0, newValue);
-            // Définir l'élément sélectionné comme la nouvelle valeur
-            v.setValue(newValue);
-        }
-        else
-        {
-            v.getItems().remove(newValue);
-            // Ajouter l'élément sélectionné au début de la liste
-            v.getItems().add(v.getItems().size(), newValue);
-            // Définir l'élément sélectionné comme la nouvelle valeur
-            v.setValue(newValue);
-        }
-    });
+        // Créer une liste observable à partir de la liste des villes
+        ObservableList<Ville> villeItems = FXCollections.observableArrayList(listVille);
+
+        // Mettre à jour les éléments de la ChoiceBox avec les villes
+        v.setItems(villeItems);
+
+        // Définir le convertisseur pour afficher le nom de la ville dans la ChoiceBox
+        v.setConverter(new StringConverter<Ville>() {
+            @Override
+            public String toString(Ville ville) {
+                return (ville == null) ? "Aucun" : ville.getVille().get();
+            }
+
+            @Override
+            public Ville fromString(String string) {
+                return null; // Pas nécessaire pour une ChoiceBox non éditable
+            }
+        });
+
+        // Écouter les changements de sélection dans la ChoiceBox
+        v.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+        	var ville = v.getValue();
+        	//if (selectedIndex != -1) {
+        	   if( v.getItems().remove(ville))
+        	   {
+        	    v.getItems().add(0, ville);
+        	    v.setValue(ville); // Sélectionner la nouvelle valeur
+        	   }
+        	
+        });
     }
+
     
     private <T> void addNullValue(ChoiceBox<T> choiceBox) {
         ObservableList<T> items = choiceBox.getItems();
         items.add(0, null);
         choiceBox.setItems(items);
     }
-    
     
     
     //////////////////////// INIT Billet ////////////////////////////////////////////////////////////////////////
@@ -516,9 +507,6 @@ public class FXMLBillet {
 		
 		Item__modele(modele_filtre);
 		addNullValue(modele_filtre);
-		
-		Item_gestion_ville(ville_arrivée_gestion);
-		Item_gestion_ville(ville_depart_gestion);
 		
 		Item_gestion_ville(ville_depart_filtre);
 		addNullValue(ville_depart_filtre);
@@ -545,11 +533,15 @@ public class FXMLBillet {
             	var  initialTime_Fin = newSelection.getH_FIN().get();
             	H_fin.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 23, initialTime_Fin.getHour()));
             	M_fin.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 23, initialTime_Fin.getMinute()));
-    	    	ville_depart_gestion.setValue(newSelection.getV_DEPART());
-    	    	ville_arrivée_gestion.setValue(newSelection.getV_ARRIVE());
             	prix_gestion.setText(newSelection.getPrix().getValue().toString());
+            	ville_depart_gestion.setValue(newSelection.getV_DEPART());
+         	    ville_arrivée_gestion.setValue(newSelection.getV_ARRIVE());
+
             }
         });
+        
+		Item_gestion_ville(ville_arrivée_gestion);
+		Item_gestion_ville(ville_depart_gestion);
         
         
         col_modele.setCellValueFactory(cellData -> cellData.getValue().getID_TRAIN().get().modeleProperty());

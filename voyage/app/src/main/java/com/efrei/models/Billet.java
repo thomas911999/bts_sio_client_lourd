@@ -16,16 +16,15 @@ import javafx.beans.property.StringProperty;
 public class Billet {
 	
     private ObjectProperty<Train> ID_TRAIN;
-    private IntegerProperty ID_RESERVATION;
+  //  private IntegerProperty ID_RESERVATION;
     private ObjectProperty<Ville> V_DEPART;
     private ObjectProperty<Ville> V_ARRIVE;
     private FloatProperty prix;
     private ObjectProperty<LocalDateTime> H_DEB;        
     private ObjectProperty<LocalDateTime> H_FIN;
     
-    public Billet(Train TRAIN, int ID_RESERVATION, Ville villeDepart, Ville villeArrivee, float prix, LocalDateTime H_deb, LocalDateTime H_Fin) {
+    public Billet(Train TRAIN, Ville villeDepart, Ville villeArrivee, float prix, LocalDateTime H_deb, LocalDateTime H_Fin) {
         this.ID_TRAIN = new SimpleObjectProperty<>(TRAIN);
-        this.ID_RESERVATION = new SimpleIntegerProperty(ID_RESERVATION);
         this.V_DEPART= new SimpleObjectProperty<>(villeDepart);
         this.V_ARRIVE = new SimpleObjectProperty<>(villeArrivee);
         this.prix = new SimpleFloatProperty(prix);
@@ -39,14 +38,6 @@ public class Billet {
 
     public void setID_TRAIN(Train ID_TRAIN) {
         this.ID_TRAIN.set(ID_TRAIN);
-    }
-
-    public IntegerProperty getID_RESERVATION() {
-        return ID_RESERVATION;
-    }
-
-    public void setID_RESERVATION(int ID_RESERVATION) {
-        this.ID_RESERVATION.set(ID_RESERVATION);
     }
 
     public FloatProperty getPrix() {

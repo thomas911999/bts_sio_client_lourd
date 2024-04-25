@@ -81,7 +81,7 @@ public class MySQLConnect {
              ResultSet rs = ps.executeQuery()) {
             
             while (rs.next()) {
-                int id_reservation = rs.getInt("ID_RESERVATION");
+               // int id_reservation = rs.getInt("ID_RESERVATION");
                 int id_train = rs.getInt("ID_TRAIN");
                 int id_ville_dep = rs.getInt("V_DEPART");
                 int id_ville_arrive = rs.getInt("V_ARRIVEE");
@@ -93,7 +93,7 @@ public class MySQLConnect {
                 LocalDateTime H_DEB = rs.getTimestamp("H_DEPART").toLocalDateTime();
                 LocalDateTime H_FIN = rs.getTimestamp("H_FIN").toLocalDateTime();
                 //int capacite = rs.getInt("CAPACITE");
-                Billet billet = new Billet(train, id_reservation, v_dep, v_arr , prix, H_DEB, H_FIN);
+                Billet billet = new Billet(train, v_dep, v_arr , prix, H_DEB, H_FIN);
                list.add(billet);
             }
         } catch (SQLException | ClassNotFoundException e) {
