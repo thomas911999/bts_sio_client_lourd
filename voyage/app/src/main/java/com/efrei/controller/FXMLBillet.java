@@ -487,7 +487,6 @@ public class FXMLBillet {
         	    v.getItems().add(0, ville);
         	    v.setValue(ville); // Sélectionner la nouvelle valeur
         	   }
-        	
         });
     }
 

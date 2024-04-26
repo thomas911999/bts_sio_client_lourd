@@ -8,17 +8,18 @@ import java.sql.SQLException;
 
 import javax.swing.JOptionPane;
 
+import com.efrei.MySQLConnect;
+import com.efrei.models.Train;
+
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.TableColumn;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import javafx.scene.control.TableColumn;
-import com.efrei.MySQLConnect;
-import com.efrei.models.Train;
 
 
 public class FXMLTrainController {
