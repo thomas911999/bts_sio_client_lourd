@@ -31,9 +31,9 @@
                   </Menu>
                   <Menu mnemonicParsing="false" text="Action">
                      <items>
-                        <MenuItem fx:id="ajout_menu" mnemonicParsing="false" onAction="#Add_Billet" text="Ajouter " />
-                        <MenuItem fx:id="modif_menu" mnemonicParsing="false" onAction="#Update_Billet" text="Modifier" />
-                        <MenuItem fx:id="supprimer_menu" mnemonicParsing="false" onAction="#Del_Billet" text="Supprimer" />
+                        <MenuItem fx:id="ajout_menu" mnemonicParsing="false" onAction="#Add_Reservation" text="Ajouter " />
+                        <MenuItem fx:id="modif_menu" mnemonicParsing="false" onAction="#Update_Reservation" text="Modifier" />
+                        <MenuItem fx:id="supprimer_menu" mnemonicParsing="false" onAction="#Del_Reservation" text="Supprimer" />
                      </items>
                   </Menu>
                   <Menu mnemonicParsing="false" text="Mon compte">
@@ -101,17 +101,17 @@
             </VBox>
             <VBox alignment="CENTER" prefHeight="171.0" prefWidth="188.0" spacing="15" style="-fx-padding: 15px;">
                <children>
-                  <Button fx:id="button_ajouter" mnemonicParsing="false" onAction="#Add_Billet" prefHeight="37.0" prefWidth="204.0" style="-fx-background-color: #196105; -fx-background-radius: 10;" text="AJOUTER" textAlignment="CENTER" textFill="WHITE">
+                  <Button fx:id="button_ajouter" mnemonicParsing="false" onAction="#Add_Reservation" prefHeight="37.0" prefWidth="204.0" style="-fx-background-color: #196105; -fx-background-radius: 10;" text="AJOUTER" textAlignment="CENTER" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="16.0" />
                      </font>
                   </Button>
-                  <Button fx:id="button_modifier" mnemonicParsing="false" onAction="#Update_Billet" prefHeight="45.0" prefWidth="203.0" style="-fx-background-color: #e28719; -fx-background-size: 20px; -fx-background-radius: 10px;" text="MODIFIER" textFill="WHITE">
+                  <Button fx:id="button_modifier" mnemonicParsing="false" onAction="#Update_Reservation" prefHeight="45.0" prefWidth="203.0" style="-fx-background-color: #e28719; -fx-background-size: 20px; -fx-background-radius: 10px;" text="MODIFIER" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="16.0" />
                      </font>
                   </Button>
-                  <Button fx:id="button_supprimer" mnemonicParsing="false" onAction="#Del_Billet" prefHeight="45.0" prefWidth="203.0" style="-fx-background-color: #ef0d0d; -fx-background-radius: 10px;" text="SUPPRIMER" textFill="WHITE">
+                  <Button fx:id="button_supprimer" mnemonicParsing="false" onAction="#Del_Reservation" prefHeight="45.0" prefWidth="203.0" style="-fx-background-color: #ef0d0d; -fx-background-radius: 10px;" text="SUPPRIMER" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="16.0" />
                      </font>
@@ -213,13 +213,13 @@
                   <Font name="System Bold" size="24.0" />
                </font>
             </Label>
-            <TableView fx:id="table_billet1" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="462.0" prefWidth="386.0" style="-fx-background-color: #fff;" tableMenuButtonVisible="true">
+            <TableView fx:id="table_reservation" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="462.0" prefWidth="386.0" style="-fx-background-color: #fff;" tableMenuButtonVisible="true">
                <columns>
-                  <TableColumn fx:id="col_modele1" prefWidth="97.59997403621674" style="-fx-alignment: CENTER;" text="login voyageur" />
-                  <TableColumn fx:id="col_voyage1" maxWidth="1.7976931348623157E308" prefWidth="135.20001983642578" style="-fx-alignment: CENTER;" text="Date Reservation" />
-                  <TableColumn fx:id="col_H_depart1" prefWidth="172.0000061035156" style="-fx-alignment: CENTER;" text="Nombre enfants" />
-                  <TableColumn fx:id="col_H_arrive1" prefWidth="172.0000061035156" style="-fx-alignment: CENTER;" text="Nombre adultes" />
-                  <TableColumn fx:id="col_prix1" prefWidth="172.0000061035156" style="-fx-alignment: CENTER;" text="Nombre seniors" />
+                  <TableColumn fx:id="col_login" prefWidth="97.59997403621674" style="-fx-alignment: CENTER;" text="login voyageur" />
+                  <TableColumn fx:id="col_date_reservation" maxWidth="1.7976931348623157E308" prefWidth="135.20001983642578" style="-fx-alignment: CENTER;" text="Date Reservation" />
+                  <TableColumn fx:id="col_enfant" prefWidth="172.0000061035156" style="-fx-alignment: CENTER;" text="Nombre enfants" />
+                  <TableColumn fx:id="col_adulte" prefWidth="172.0000061035156" style="-fx-alignment: CENTER;" text="Nombre adultes" />
+                  <TableColumn fx:id="col_senor" prefWidth="172.0000061035156" style="-fx-alignment: CENTER;" text="Nombre seniors" />
                </columns>
             </TableView>
          </children>

@@ -42,8 +42,19 @@ public class Ville {
 		Ville = ville;
 	}
     
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Ville other = (Ville) obj;
+		return Objects.equals(Id_Ville.getValue(), other.Id_Ville.getValue()) && Objects.equals(Ville.getValue(), other.Ville.getValue());
+	}
 	
-	public static Ville get_ville(Integer id_ville) {
+	public static Ville get_Ville(Integer id_ville) {
 	    ObservableList<Ville> getDataVille = MySQLConnect.getDataVille();
 	    
 	    for (Ville v : getDataVille) {
@@ -53,22 +64,12 @@ public class Ville {
 	    }
 	    return null;
 	}
+
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(Id_Ville, Ville);
+	}
 	
     
-    @Override
-    public boolean equals(Object obj) {
-        // Vérifie si l'objet en argument est une instance de Ville
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null || getClass() != obj.getClass()) {
-            return false;
-        }
-
-        // Convertit l'objet en argument en Ville
-        Ville other = (Ville) obj;
-
-        // Compare les attributs id_ville et libelle
-        return Id_Ville == other.Id_Ville && Objects.equals(Ville, other.Ville);
-    }
 }

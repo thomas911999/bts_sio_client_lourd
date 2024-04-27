@@ -3,6 +3,9 @@ package com.efrei.models;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Objects;
+
+import com.efrei.MySQLConnect;
 
 import javafx.beans.property.FloatProperty;
 import javafx.beans.property.IntegerProperty;
@@ -12,11 +15,11 @@ import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+import javafx.collections.ObservableList;
 
 public class Billet {
 	
     private ObjectProperty<Train> ID_TRAIN;
-  //  private IntegerProperty ID_RESERVATION;
     private ObjectProperty<Ville> V_DEPART;
     private ObjectProperty<Ville> V_ARRIVE;
     private FloatProperty prix;
@@ -111,4 +114,40 @@ public class Billet {
             return new SimpleStringProperty("");
         }
     }
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(H_DEB, H_FIN, ID_TRAIN, V_ARRIVE, V_DEPART, prix);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Billet other = (Billet) obj;
+		return Objects.equals(H_DEB.getValue(), other.H_DEB.getValue())
+				&& Objects.equals(ID_TRAIN.getValue(), other.ID_TRAIN.getValue()) && Objects.equals(V_ARRIVE.getValue(), other.V_ARRIVE.getValue())
+				&& Objects.equals(V_DEPART.getValue(), other.V_DEPART.getValue());
+	}
+
+	public static Billet get_Billet(Train train, LocalDateTime h_DEB, Ville v_dep, Ville v_arr) {
+		ObservableList<Billet> getDataBillet = MySQLConnect.getDataBillet();
+	    
+	    for (Billet b : getDataBillet) {
+	    	
+	    	Train b_train = b.getID_TRAIN().getValue();
+	    	LocalDateTime b_h_deb = b.getH_DEB().getValue();
+	    	Ville b_v_dep = b.getV_DEPART();
+	    	Ville b_v_arr = b.getV_ARRIVE();
+	    	
+	    	if((b_train.idProperty().get() == (train.idProperty().get())) && b_v_dep.equals(v_dep) && b_v_arr.equals(v_arr) && b_h_deb.equals(h_DEB) ) 
+	    		return b;
+	    }
+	    return null;
+	}
+
 }

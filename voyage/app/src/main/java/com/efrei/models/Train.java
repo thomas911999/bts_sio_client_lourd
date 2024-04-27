@@ -1,5 +1,7 @@
 package com.efrei.models;
 
+import java.util.Objects;
+
 import com.efrei.MySQLConnect;
 
 import javafx.beans.property.IntegerProperty;
@@ -54,6 +56,24 @@ public class Train {
 	            return t;
 	    }
 	    return null;
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(CAPACITE, ID_TRAIN, MODELE);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Train other = (Train) obj;
+		return Objects.equals(CAPACITE.getValue(), other.CAPACITE.getValue()) && Objects.equals(ID_TRAIN.getValue(), other.ID_TRAIN.getValue())
+				&& Objects.equals(MODELE.getValue(), other.MODELE.getValue());
 	}
 
     // Other methods remain the same
