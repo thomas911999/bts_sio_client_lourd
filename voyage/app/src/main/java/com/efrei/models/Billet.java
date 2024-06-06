@@ -19,6 +19,8 @@ import javafx.collections.ObservableList;
 
 public class Billet {
 	
+	
+	private IntegerProperty ID_BILLET;
     private ObjectProperty<Train> ID_TRAIN;
     private ObjectProperty<Ville> V_DEPART;
     private ObjectProperty<Ville> V_ARRIVE;
@@ -26,8 +28,9 @@ public class Billet {
     private ObjectProperty<LocalDateTime> H_DEB;        
     private ObjectProperty<LocalDateTime> H_FIN;
     
-    public Billet(Train TRAIN, Ville villeDepart, Ville villeArrivee, float prix, LocalDateTime H_deb, LocalDateTime H_Fin) {
-        this.ID_TRAIN = new SimpleObjectProperty<>(TRAIN);
+    public Billet(Integer ID_BILLET, Train TRAIN, Ville villeDepart, Ville villeArrivee, float prix, LocalDateTime H_deb, LocalDateTime H_Fin) {
+        this.ID_BILLET = new SimpleIntegerProperty(ID_BILLET);
+    	this.ID_TRAIN = new SimpleObjectProperty<>(TRAIN);
         this.V_DEPART= new SimpleObjectProperty<>(villeDepart);
         this.V_ARRIVE = new SimpleObjectProperty<>(villeArrivee);
         this.prix = new SimpleFloatProperty(prix);
@@ -104,6 +107,18 @@ public class Billet {
         }
     }
     
+    public static StringProperty Date_to_string_day_hour(ObjectProperty<LocalDateTime> Time)
+    {
+    	if (Time != null && Time.get() != null) {
+            LocalDateTime dateTime = Time.get();
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
+            String formattedDateTime = dateTime.format(formatter);
+            return new SimpleStringProperty(formattedDateTime);
+        } else {
+            return new SimpleStringProperty("");
+        }
+    }
+    
     public static StringProperty Date_to_string_day(LocalDateTime objectProperty)
     {
     	if (objectProperty != null ) {
@@ -148,6 +163,25 @@ public class Billet {
 	    		return b;
 	    }
 	    return null;
+	}
+	
+	public static Billet get_Billet(Integer id_billet) {
+		ObservableList<Billet> getDataBillet = MySQLConnect.getDataBillet();
+	    
+	    for (Billet b : getDataBillet) {
+	    	
+	    	if(id_billet == (b.getID_BILLET().getValue()))
+	    		return b;
+	    }
+	    return null;
+	}
+
+	public IntegerProperty getID_BILLET() {
+		return ID_BILLET;
+	}
+
+	public void setID_BILLET(IntegerProperty iD_BILLET) {
+		ID_BILLET = iD_BILLET;
 	}
 
 }

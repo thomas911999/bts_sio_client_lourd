@@ -265,8 +265,29 @@ public class FXMLBillet {
     @FXML
     void Del_Billet(ActionEvent event) {
     	
-    	/// TODO //
-    }
+    	Billet selectedItem = table_billet.getSelectionModel().getSelectedItem();
+	    if (selectedItem == null) {
+	        JOptionPane.showMessageDialog(null, "Aucun billet sélectionné.");
+	        return;
+	    }
+	    
+    	String sql = "DELETE FROM billet WHERE ID_BILLET = ?";
+	    
+	    try {
+			conn = MySQLConnect.connectDb();
+            pst = conn.prepareStatement(sql);
+            pst.setInt(1, selectedItem.getID_BILLET().getValue());
+			pst.execute();
+			listBillet.remove(selectedItem);
+
+            JOptionPane.showMessageDialog(null, "SUPRESSION BILLET");
+        } 
+        
+        catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "ERREUR" + e);
+        }
+	    
+	}
     
     @FXML
     void Update_Billet(ActionEvent event) {
@@ -297,7 +318,7 @@ public class FXMLBillet {
 	    	Timestamp time_fin = Timestamp.valueOf(selectedDate.atTime(hour_fin, minute_fin));
 		    
 
-	    	String sql = "UPDATE billet SET ID_Train = ?, H_DEPART = ?, H_FIN = ?, V_DEPART = ?, V_ARRIVEE = ?, PRIX_BILLET = ? WHERE ID_Train = ?";
+	    	String sql = "UPDATE billet SET ID_Train = ?, H_DEPART = ?, H_FIN = ?, V_DEPART = ?, V_ARRIVEE = ?, PRIX_BILLET = ? WHERE ID_BILLET = ?";
 		    
 		    try {
 				conn = MySQLConnect.connectDb();
@@ -308,24 +329,25 @@ public class FXMLBillet {
 	            pst.setInt(4,  v_depart.getId_Ville().getValue()); // V_DEPART
 	            pst.setInt(5,  v_arrive.getId_Ville().getValue()); // V_ARRIVE
 	            pst.setFloat(6,  price); // PRIX_BILLET
-	            pst.setInt(7,  train.idProperty().getValue());
+	            pst.setInt(7, selectedItem.getID_BILLET().getValue());
 	            pst.executeUpdate();
 
 		        int affectedRows = pst.executeUpdate();
 		        if (affectedRows > 0) {
+		        	
+			    	time_dep = Timestamp.valueOf(selectedDate.atTime(hour_deb, minute_deb));
+			    	time_fin = Timestamp.valueOf(selectedDate.atTime(hour_fin, minute_fin));
 		            // Update the item in the listM
 		            selectedItem.setID_TRAIN(train);
 		            selectedItem.setH_DEB(time_dep.toLocalDateTime());
-		            selectedItem.setH_DEB(time_fin.toLocalDateTime());
+		            selectedItem.setH_FIN(time_fin.toLocalDateTime());
 		            selectedItem.setV_ARRIVE(v_arrive);
 		            selectedItem.setV_DEPART(v_depart);
 		            selectedItem.setPrix(price);
 		            table_billet.refresh();
 		            
 		            JOptionPane.showMessageDialog(null, "Mise à jour des billets réussie.");
-		        } else {
-		            JOptionPane.showMessageDialog(null, "Échec de la mise à jour du billet.");
-		        }
+		        } 
 		    } catch (SQLException e) {
 		        JOptionPane.showMessageDialog(null, "Erreur lors de la mise à jour du billet : " + e.getMessage());
 		    } catch (NumberFormatException e) {
@@ -491,7 +513,7 @@ public class FXMLBillet {
     }
 
     
-    private <T> void addNullValue(ChoiceBox<T> choiceBox) {
+    public static <T> void addNullValue(ChoiceBox<T> choiceBox) {
         ObservableList<T> items = choiceBox.getItems();
         items.add(0, null);
         choiceBox.setItems(items);

@@ -117,7 +117,7 @@ public class MySQLConnect {
                 
                 LocalDateTime H_DEB = rs.getTimestamp("H_DEPART").toLocalDateTime();
                 LocalDateTime H_FIN = rs.getTimestamp("H_FIN").toLocalDateTime();
-                Billet billet = new Billet(train, v_dep, v_arr , prix, H_DEB, H_FIN);
+                Billet billet = new Billet(rs.getInt("ID_BILLET"), train, v_dep, v_arr , prix, H_DEB, H_FIN);
                list.add(billet);
             }
         } catch (SQLException | ClassNotFoundException e) {
@@ -137,18 +137,20 @@ public class MySQLConnect {
                 int nb_adultes = rs.getInt("NB_ADULTE");
                 int nb_enfants = rs.getInt("NB_ENFANT");
                 int nb_senior = rs.getInt("NB_SENIOR");
-                int id_train = rs.getInt("id_train");
+                int id_res = rs.getInt("ID_BILLET");
+
+                /*              int id_train = rs.getInt("id_train");
                 int id_ville_dep = rs.getInt("v_depart");
                 int id_ville_arrive = rs.getInt("v_arrivee");
                 
                 Ville v_dep = Ville.get_Ville(id_ville_dep);
                 Ville v_arr = Ville.get_Ville(id_ville_arrive);
-                Train train = Train.get_Train(id_train);
+                Train train = Train.get_Train(id_train);*/
 
                 LocalDateTime H_Reservation = rs.getTimestamp("DATE_RESERVATION").toLocalDateTime();
-                LocalDateTime H_DEB = rs.getTimestamp("H_DEPART").toLocalDateTime();
+             //   LocalDateTime H_DEB = rs.getTimestamp("H_DEPART").toLocalDateTime();
 
-                Billet billet = Billet.get_Billet(train,H_DEB,v_dep,v_arr);
+                Billet billet = Billet.get_Billet(id_res);
                 System.out.println(billet.getID_TRAIN().getValue().idProperty().get());
                 Voyageur voyageur = Voyageur.GetVoyageur(id_voyageur);
                 Reservation reservation = new Reservation(billet, voyageur, H_Reservation,nb_enfants,nb_adultes,nb_senior);

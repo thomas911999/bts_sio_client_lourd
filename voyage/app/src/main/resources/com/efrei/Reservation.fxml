@@ -58,7 +58,7 @@
       </VBox>
    </top>
    <right>
-      <VBox prefHeight="572.0" prefWidth="194.0" style="-fx-padding: 10px; -fx-background-color: #3c4691;" BorderPane.alignment="CENTER">
+      <VBox prefHeight="572.0" prefWidth="196.0" style="-fx-padding: 10px; -fx-background-color: #3c4691;" BorderPane.alignment="CENTER">
          <children>
             <VBox alignment="CENTER" prefHeight="433.0" prefWidth="158.0" style="-fx-padding: 10;">
                <children>
@@ -192,7 +192,7 @@
    <center>
       <VBox prefHeight="624.0" prefWidth="382.0" BorderPane.alignment="CENTER">
          <children>
-            <Label alignment="CENTER" contentDisplay="CENTER" ellipsisString="" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="59.0" prefWidth="386.0" style="-fx-background-color: #dee3e9; -fx-background-size: 100%;" text="Table billet&#10;&#10;" textAlignment="CENTER" textOverrun="WORD_ELLIPSIS" wrapText="true">
+            <Label alignment="CENTER" contentDisplay="CENTER" ellipsisString="" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="35.0" prefWidth="358.0" style="-fx-background-color: #dee3e9; -fx-background-size: 100%;" text="Table billet&#10;&#10;" textAlignment="CENTER" textOverrun="WORD_ELLIPSIS" wrapText="true">
                <font>
                   <Font name="System Bold" size="24.0" />
                </font>
