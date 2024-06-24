@@ -107,12 +107,12 @@
                   <Menu mnemonicParsing="false" text="Mon compte">
                      <items>
                         <MenuItem mnemonicParsing="false" text="Gérer les administrateurs" />
-                        <MenuItem mnemonicParsing="false" text="Se déconnecter" />
+                        <MenuItem fx:id="deconexion_menu" mnemonicParsing="false" onAction="#Switch_connexion" text="Se déconnecter" />
                      </items>
                   </Menu>
                   <Menu mnemonicParsing="false" text="Quitter">
                      <items>
-                        <MenuItem mnemonicParsing="false" text="Quitter" />
+                        <MenuItem fx:id="quitter_menu" mnemonicParsing="false" onAction="#handleExitMenuItemAction" text="Quitter" />
                      </items>
                   </Menu>
                </menus>

@@ -16,6 +16,7 @@ import com.efrei.models.Train;
 import com.efrei.models.Ville;
 import com.efrei.models.Voyageur;
 
+import javafx.application.Platform;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -165,6 +166,12 @@ public class FXMLReservation {
     Connection conn = null;
     ResultSet rs = null;
     PreparedStatement pst = null;
+    
+    @FXML
+    private void handleExitMenuItemAction(ActionEvent event) {
+        Platform.exit(); // Close JavaFX application
+        System.exit(0); // Ensure JVM terminates
+    }
 
     private void changeScene(String fxml) {
         try {

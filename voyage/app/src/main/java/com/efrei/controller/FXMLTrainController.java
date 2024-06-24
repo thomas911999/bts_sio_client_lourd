@@ -11,12 +11,15 @@ import javax.swing.JOptionPane;
 import com.efrei.MySQLConnect;
 import com.efrei.models.Train;
 
+import javafx.application.Platform;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -32,6 +35,12 @@ public class FXMLTrainController {
 
     @FXML
     private Button button_supprimer;
+    
+    @FXML
+    private MenuItem quitter_menu;
+    
+    @FXML
+    private MenuItem deconexion_menu;
 
     @FXML
     private TextField capacite_field;
@@ -62,6 +71,12 @@ public class FXMLTrainController {
     ResultSet rs = null;
     PreparedStatement pst = null;
 
+    @FXML
+    private void handleExitMenuItemAction(ActionEvent event) {
+        Platform.exit(); // Close JavaFX application
+        System.exit(0); // Ensure JVM terminates
+    }
+    
     private void changeScene(String fxml) {
         try {
             Stage stage = (Stage) button_ajouter.getScene().getWindow();
@@ -77,7 +92,11 @@ public class FXMLTrainController {
     // Method to switch to the reservation scene
     @FXML
     public void Switch_reservation() {
-        changeScene("/com/efrei/scene.fxml"); // Adjust the path as needed
+        changeScene("/com/efrei/Reservation.fxml"); // Adjust the path as needed
+    }
+    
+    public void Switch_connexion() {
+        changeScene("/com/efrei/Connexion.fxml"); // Adjust the path as needed
     }
     
     @FXML

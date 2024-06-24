@@ -22,6 +22,7 @@ class TrainTest {
 		
 		Train a = new Train(Id,modele,capacite);
 		
+		assertNotEquals(1,2);
 		assertEquals(a.idProperty().get(), Id);	
 		assertEquals(a.capaciteProperty().get(), capacite);
 		assertEquals(a.modeleProperty().get(), modele);

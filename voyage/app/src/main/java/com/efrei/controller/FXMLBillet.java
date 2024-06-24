@@ -25,6 +25,7 @@ import com.efrei.models.Train;
 import com.efrei.models.Ville;
 
 import javafx.util.StringConverter;
+import javafx.application.Platform;
 import javafx.beans.property.ObjectProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -41,6 +42,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.Menu;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.Spinner;
 import javafx.scene.control.SpinnerValueFactory;
@@ -65,6 +67,15 @@ public class FXMLBillet {
     
     @FXML
     private MenuItem ajout_menu;
+    
+
+    @FXML
+    private MenuItem deconnexion_menu;
+    
+    @FXML
+    private MenuItem quitter_menu;
+
+    
     
     
     ///// TABLE CONTROLLER ///////////////////////
@@ -166,8 +177,16 @@ public class FXMLBillet {
     @FXML
     private ChoiceBox<Ville> ville_depart_gestion;
     
+
+    
     
     //////////////////////////// FUNCTION MENU ET GESTION //////////////////////////////////////////////
+    
+    @FXML
+    private void handleExitMenuItemAction(ActionEvent event) {
+        Platform.exit(); // Close JavaFX application
+        System.exit(0); // Ensure JVM terminates
+    }
     
     Connection conn = null;
     ResultSet rs = null;
@@ -204,6 +223,13 @@ public class FXMLBillet {
     void Switch_reservation(ActionEvent event) {
     	changeScene("/com/efrei/Reservation.fxml");
     }
+    
+    @FXML
+    void switch_connexion(ActionEvent event) {
+    	changeScene("/com/efrei/Connexion.fxml");
+    }
+
+    
     
     @FXML
     void Add_Billet(ActionEvent event) {
@@ -453,7 +479,7 @@ public class FXMLBillet {
 		        } else {
 		            Integer id = train.idProperty().get(); // Supposons qu'il y a toujours un seul ID dans la Map
 		            String modele = train.modeleProperty().getValue();
-		            return modele + "\nID: " + id + "\t\t\t"; // Afficher l'ID avec le modèle
+		            return modele + "\nID: " + id + ""; // Afficher l'ID avec le modèle
 		        }
 		    }
 		    @Override
@@ -523,6 +549,8 @@ public class FXMLBillet {
     //////////////////////// INIT Billet ////////////////////////////////////////////////////////////////////////
     
 	public void initialize() {
+		
+		quitter_menu.setOnAction(null);
     	
 		Item__modele(modele_gestion);
 		
@@ -577,6 +605,8 @@ public class FXMLBillet {
         ville_arrivée_filtre.setOnAction(event -> Search(event));
         modele_filtre.setOnAction(event -> Search(event));
         Date_filtre.setOnAction(event -> Search(event));
+        
+       // quitter_menu.setOnAction(event -> handleExitMenuItemAction(event));
 
     }
 
